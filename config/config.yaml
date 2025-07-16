@@ -1,0 +1,14 @@
+env: dev
+
+project:
+  secret: 'JD9n9pvZkwBsxkctgyhKRhmT58PG4rDaU51K'
+  # receiver_key_path: 'receiver.pem'
+  # private_key_path: 'private.pem'
+
+api_auth: 
+  enable: true
+#  key: ''  
+
+root_auth: 
+  enable: true
+
