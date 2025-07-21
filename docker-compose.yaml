@@ -1,0 +1,33 @@
+x-logging: &loggings
+  options:
+    max-size: 512m
+
+services:
+
+  online-vitepress:
+    image: online-vitepress
+    container_name: online-vitepress
+    restart: always          
+    logging: *loggings    
+    environment:
+      - TZ=Asia/Singapore
+    ports:
+      - "8081:80"
+    volumes:
+      - ./docs:/app/view/docs/public
+      - ./dist:/app/dist
+      # - ./config.yaml:/app/config/config.yaml
+
+  press-view:
+    image: nginx:stable
+    container_name: press-view
+    restart: always          
+    logging: *loggings    
+    environment:
+      - TZ=Asia/Singapore
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nignx/conf.d:/etc/nginx/conf.d
+      - ./dist:/usr/share/nginx/html/
